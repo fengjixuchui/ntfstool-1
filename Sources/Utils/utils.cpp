@@ -148,7 +148,8 @@ namespace utils
 		}
 
 		DWORD utf8_string_size(const std::string& str) {
-			int c, i, ix, q;
+			int c, i, q;
+			size_t ix;
 			for (q = 0, i = 0, ix = str.length(); i < ix; i++, q++)
 			{
 				c = (unsigned char)str[i];
@@ -164,6 +165,12 @@ namespace utils
 		std::string lower(std::string& s)
 		{
 			transform(s.begin(), s.end(), s.begin(), ::tolower);
+			return s;
+		}
+
+		std::string upper(std::string& s)
+		{
+			transform(s.begin(), s.end(), s.begin(), ::toupper);
 			return s;
 		}
 
@@ -373,6 +380,21 @@ namespace utils
 			return  hex((ULONG32)value, suffix, swap);
 		}
 
+		std::string hex6(ULONG64 value, bool suffix, bool swap)
+		{
+			if (swap)
+			{
+				value = _byteswap_uint64(value);
+			}
+			std::ostringstream os;
+			os << std::hex << std::setw(12) << std::setfill('0') << value << std::dec;
+			if (suffix)
+			{
+				os << "h";
+			}
+			return os.str();
+		}
+
 		std::string hex(ULONG64 value, bool suffix, bool swap)
 		{
 			if (swap)
@@ -520,7 +542,7 @@ namespace utils
 			if (ads_sep != std::string::npos)
 			{
 				stream_name = p.filename().string().substr(ads_sep + 1);
-				size_t last_sep = str.find_last_of(":");
+				size_t last_sep = str.find_last_of(':');
 				str = str.substr(0, last_sep);
 			}
 

@@ -30,6 +30,7 @@
     <ClInclude Include="Sources\Drive\disk.h" />
     <ClInclude Include="Sources\Drive\mbr_gpt.h" />
     <ClInclude Include="Sources\Drive\reader.h" />
+    <ClInclude Include="Sources\Drive\smart.h" />
     <ClInclude Include="Sources\Drive\vbr.h" />
     <ClInclude Include="Sources\Drive\volume.h" />
     <ClInclude Include="Sources\NTFS\ntfs.h" />
@@ -62,6 +63,7 @@
     <ClCompile Include="Sources\Commands\command_shell.cpp" />
     <ClCompile Include="Sources\Commands\command_fve.cpp" />
     <ClCompile Include="Sources\Commands\command_mft.cpp" />
+    <ClCompile Include="Sources\Commands\command_smart.cpp" />
     <ClCompile Include="Sources\Commands\command_undelete.cpp" />
     <ClCompile Include="Sources\Commands\command_usn.cpp" />
     <ClCompile Include="Sources\Commands\command_vbr.cpp" />
