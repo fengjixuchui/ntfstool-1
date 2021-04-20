@@ -1,4 +1,3 @@
-
 #include "Utils/buffer.h"
 #include "Drive/disk.h"
 #include "Utils/table.h"
@@ -15,8 +14,7 @@
 #include <iostream>
 #include <iomanip>
 #include <memory>
-#include <stdexcept> 
-
+#include <stdexcept>
 
 void print_mbr(std::shared_ptr<Disk> disk)
 {
@@ -53,11 +51,11 @@ void print_mbr(std::shared_ptr<Disk> disk)
 			partitions->add_item_line(std::to_string(mbr->partition[i].last_sector.cylinder) + " " + std::to_string(mbr->partition[i].last_sector.head) + " " + std::to_string(mbr->partition[i].last_sector.sector));
 			partitions->add_item_line(std::to_string(mbr->partition[i].first_sector_lba));
 			partitions->add_item_line(std::to_string(mbr->partition[i].sectors));
-			partitions->add_item_line(utils::format::size(mbr->partition[i].sectors * 512));
+			partitions->add_item_line(utils::format::size(static_cast<DWORD64>(mbr->partition[i].sectors) * 512));
 			partitions->new_line();
 		}
 	}
-	for (EBR ebr : disk->ebrs())
+	for (EBR& ebr : disk->ebrs())
 	{
 		n_partitions++;
 		partitions->add_item_line(std::to_string(n_partitions));
@@ -68,7 +66,7 @@ void print_mbr(std::shared_ptr<Disk> disk)
 		partitions->add_item_line(std::to_string(ebr.partition[0].last_sector.cylinder) + " " + std::to_string(ebr.partition[0].last_sector.head) + " " + std::to_string(ebr.partition[0].last_sector.sector));
 		partitions->add_item_line(std::to_string(ebr.partition[0].first_sector_lba));
 		partitions->add_item_line(std::to_string(ebr.partition[0].sectors));
-		partitions->add_item_line(utils::format::size(ebr.partition[0].sectors * LOGICAL_SECTOR_SIZE));
+		partitions->add_item_line(utils::format::size(static_cast<DWORD64>(ebr.partition[0].sectors) * LOGICAL_SECTOR_SIZE));
 		partitions->new_line();
 	}
 
@@ -124,9 +122,7 @@ void print_mbr(std::shared_ptr<Disk> disk)
 }
 
 namespace commands {
-
 	namespace mbr {
-
 		int print_mbr(std::shared_ptr<Options> opts) {
 			std::ios_base::fmtflags flag_backup(std::cout.flags());
 

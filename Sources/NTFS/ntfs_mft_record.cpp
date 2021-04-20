@@ -66,12 +66,33 @@ ULONG64 MFTRecord::datasize(std::string stream_name)
 						attr_name.resize(pAttr->nameLength);
 						if (((pAttr->nameLength == 0) && (stream_name == "")) || ((pAttr->nameLength > 0) && (stream_name == utils::strings::to_utf8(attr_name))))
 						{
-							std::shared_ptr<MFTRecord> extRecordHeader = _mft->record_from_number(pAttr->recordNumber & 0xffffffffffff);
-							return extRecordHeader->datasize();
+							if (pAttr->recordNumber & 0xffffffffffff != header()->MFTRecordIndex & 0xffffffffffff)
+							{
+								std::shared_ptr<MFTRecord> extRecordHeader = _mft->record_from_number(pAttr->recordNumber & 0xffffffffffff);
+								if (extRecordHeader != nullptr)
+								{
+									return extRecordHeader->datasize();
+								}
+								else
+								{
+									break;
+								}
+							}
+							else
+							{
+								break;
+							}
 						}
 					}
 
-					offset += pAttr->recordLength;
+					if (pAttr->recordLength > 0)
+					{
+						offset += pAttr->recordLength;
+					}
+					else
+					{
+						break;
+					}
 				}
 			}
 		}
@@ -193,7 +214,6 @@ std::vector<std::shared_ptr<IndexEntry>> MFTRecord::index()
 		}
 
 		ret = parse_entries(POINTER_ADD(PMFT_RECORD_ATTRIBUTE_INDEX_ENTRY, pAttrIndexRoot, pAttrIndexRoot->EntryOffset + 0x10), VCNToBlock, type);
-
 	}
 
 	return ret;
@@ -466,7 +486,6 @@ cppcoro::generator<std::pair<PBYTE, DWORD>> MFTRecord::process_data(std::string 
 
 						co_yield std::pair<PBYTE, DWORD>(buffer_decompressed.data(), Final);
 						writeSize += Final;
-
 					}
 				}
 			}
@@ -629,4 +648,3 @@ std::vector<std::string> MFTRecord::alternate_data_names()
 
 	return ret;
 }
-

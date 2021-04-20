@@ -4,7 +4,7 @@
 [![Language: C++](https://img.shields.io/badge/Language-C%2B%2B-brightgreen.svg?tyle=flat-square)](#)
 [![x64](https://img.shields.io/badge/Windows-64_bit-0078d7.svg)](#)
 [![x86](https://img.shields.io/badge/Windows-32_bit-0078d7.svg)](#)
-[![v1.2](https://img.shields.io/badge/Version-1.2-ff5733.svg)](#)
+[![v1.2](https://img.shields.io/badge/Version-1.3-ff5733.svg)](#)
 ![Build](https://github.com/thewhiteninja/ntfstool/workflows/Build/badge.svg)
 
 <br />
@@ -873,40 +873,97 @@ the help command displays some examples for each command.
 <tr><td>smart disk=1</td></tr>
 <tr><td>
 
-    Version       : 1 revision 1
-    Type          : SATA/IDE Master on primary channel
-    Capabilities  : ATA, ATAPI, S.M.A.R.T
+    Version          : 1 revision 1
+    Type             : SATA/IDE Master on primary channel
+    Capabilities     : ATA, ATAPI, S.M.A.R.T
 
-    +--------------------------------------------------------------------------------------------------------+
-    | Index | Name                              | Flags | Raw           | Value / Worst / Threshold | Status |
-    +--------------------------------------------------------------------------------------------------------+
-    |   01h | Read Error Rate                   | 000Fh | 0000085E3E08h |              117 / 99 / 6 |     Ok |
-    |   03h | Spin Up Time                      | 0003h | 000000000000h |               96 / 96 / 0 |     Ok |
-    |   04h | Start/Stop Count                  | 0032h | 00000000163Dh |              95 / 95 / 20 |     Ok |
-    |   05h | Reallocated Sector Count          | 0033h | 000000000000h |            100 / 100 / 10 |     Ok |
-    |   07h | Seek Error Rate                   | 000Fh | 00370B608808h |              65 / 59 / 30 |     Ok |
-    |   09h | Power-On Hours Count              | 0032h | 000000008C98h |               59 / 59 / 0 |     Ok |
-    |   0Ah | Spin Up Retry Count               | 0013h | 000000000000h |            100 / 100 / 97 |     Ok |
-    |   0Ch | Power Cycle Count                 | 0032h | 0000000000EDh |            100 / 100 / 20 |     Ok |
-    |   B7h | Sata Down Shift Error Count       | 0032h | 000000000000h |             100 / 100 / 0 |     Ok |
-    |   B8h | End-To-End Error                  | 0032h | 000000000000h |            100 / 100 / 99 |     Ok |
-    |   BBh | Reported Uncorrectable Errors     | 0032h | 000000000000h |             100 / 100 / 0 |     Ok |
-    |   BCh | Command Timeout                   | 0032h | 000000000000h |             100 / 100 / 0 |     Ok |
-    |   BDh | High Fly Writes                   | 003Ah | 000000000086h |                 1 / 1 / 0 |     Ok |
-    |   BEh | Temperature Difference From 100   | 0022h | 0000231B001Fh |              69 / 58 / 45 |     Ok |
-    |   BFh | G-Sense Error Rate                | 0032h | 000000000000h |             100 / 100 / 0 |     Ok |
-    |   C0h | Power-Off Retract Count           | 0032h | 000000000000h |             100 / 100 / 0 |     Ok |
-    |   C1h | Load/Unload Cycle Count           | 0032h | 000000034E6Ah |                 1 / 1 / 0 |     Ok |
-    |   C2h | Temperature                       | 0022h | 00110000001Fh |               31 / 42 / 0 |     Ok |
-    |   C5h | Current Pending Sector Count      | 0012h | 000000000000h |             100 / 100 / 0 |     Ok |
-    |   C6h | Off-Line Scan Uncorrectable Count | 0010h | 000000000000h |             100 / 100 / 0 |     Ok |
-    |   C7h | Udma Crc Error Rate               | 003Eh | 000000000000h |             200 / 200 / 0 |     Ok |
-    |   F0h | Head Flying Hours                 | 0000h | DD9B00004F63h |             100 / 253 / 0 |     Ok |
-    |   F1h | Lifetime Writes From Host Gib     | 0000h | 00249354A654h |             100 / 253 / 0 |     Ok |
-    |   F2h | Lifetime Reads From Host Gib      | 0000h | 020EA4DAFEEEh |             100 / 253 / 0 |     Ok |
-    |   02h | Throughput Performance            | 0000h | 000000000000h |                 0 / 0 / 0 |     Ok |
-    |   04h | Start/Stop Count                  | 0404h | 000000000000h |                 0 / 0 / 0 |     Ok |
-    +--------------------------------------------------------------------------------------------------------+
-    
+    Status           : Passed
+
+    -- Device ID
+    +---------------------------------------------------------------------------------------------------+
+    | Property                                               | Value                                    |
+    +---------------------------------------------------------------------------------------------------+
+    | General Configuration                                  | 0040h                                    |
+    | Number of Cylinders                                    | 16383                                    |
+    | Reserved                                               | c837h                                    |
+    | Number Of Heads                                        | 16                                       |
+    | Bytes Per Track                                        | 0                                        |
+    | Bytes Per Sector                                       | 0                                        |
+    | Sectors Per Track                                      | 63                                       |
+    | Vendor Unique                                          |                                          |
+    | Seria Number                                           | S2RBNX0H606448W                          |
+    | Buffer Type                                            | 0                                        |
+    | Buffer Size                                            | 0                                        |
+    | ECC Size                                               | 0                                        |
+    | Firmware Revision                                      | EMT02B6Q                                 |
+    | Model Number                                           | Samsung SSD 850 EVO 500GB                |
+    | Maximum Number of Sectors On R/W                       | 32769                                    |
+    | Double Word IO                                         | 16385                                    |
+    | Capabilities                                           | Reserved                 : 0000h         |
+    |                                                        | DMA Support              : True          |
+    |                                                        | LBA Support              : True          |
+    |                                                        | DisIORDY                 : True          |
+    |                                                        | IORDY                    : True          |
+    |                                                        | Requires ATA soft start  : False         |
+    |                                                        | Overlap Operation support: True          |
+    |                                                        | Command Queue Support    : False         |
+    |                                                        | Interleaved DMA Support  : False         |
+    | Reserved1                                              | 4000h                                    |
+    | PIO Timing                                             | 512                                      |
+    | DMA Timing                                             | 512                                      |
+    | Field Validity                                         | CHS Number               : True          |
+    |                                                        | Cycle Number             : True          |
+    |                                                        | Ultra DMA                : True          |
+    | Current numbers of cylinders                           | 16383                                    |
+    | Current numbers of heads                               | 16                                       |
+    | Current numbers of sectors per track                   | 63                                       |
+    | Multiple Sector Setting                                | 16514064                                 |
+    | Total Number of Sectors Addressable (LBA)              | 268435455                                |
+    | Singleword DMA Transfer Support                        | 0                                        |
+    | Multiword DMA Transfer Support                         | Mode 0 (4.17Mb/s)                        |
+    |                                                        | Mode 1 (13.3Mb/s)                        |
+    |                                                        | Mode 2 (16.7Mb/s)                        |
+    | Advanced PIO Modes                                     | 0003h                                    |
+    | Minimum Multiword DMA Transfer Cycle Time per Word     | 120                                      |
+    | Recommended Multiword DMA Transfer Cycle Time per Word | 120                                      |
+    | Minimum PIO Transfer Cycle Time (No Flow Control)      | 120                                      |
+    | Minimum PIO Transfer Cycle Time (Flow Control)         | 120                                      |
+    | ATA Support                                            | ATA-2                                    |
+    |                                                        | ATA-3                                    |
+    |                                                        | ATA-4                                    |
+    |                                                        | ATA/ATAPI-5                              |
+    |                                                        | ATA/ATAPI-6                              |
+    |                                                        | ATA/ATAPI-7                              |
+    |                                                        | ATA/ATAPI-8                              |
+    |                                                        | ATA/ATAPI-9                              |
+    | Ultra DMA Transfer Support                             | Mode 0 (16.7MB/s)                        |
+    |                                                        | Mode 1 (25.0MB/s)                        |
+    |                                                        | Mode 2 (33.3MB/s)                        |
+    |                                                        | Mode 3 (44.4MB/s)                        |
+    |                                                        | Mode 4 (66.7MB/s)                        |
+    |                                                        | Mode 5 (100.0MB/s) (selected)            |
+    |                                                        | Mode 6 (133.0MB/s)                       |
+    +---------------------------------------------------------------------------------------------------+
+
+    -- Attributes
+    +-------------------------------------------------------------------------------------------------------------------+
+    | Index | Name                                         | Flags | Raw           | Value | Worst | Threshold | Status |
+    +-------------------------------------------------------------------------------------------------------------------+
+    |   05h | Reallocated Sector Count                     | 0033h | 000000000000h |   100 |   100 |        10 |     Ok |
+    |   09h | Power-On Hours Count                         | 0032h | 000000008d54h |    92 |    92 |         0 |     Ok |
+    |   0ch | Power Cycle Count                            | 0032h | 0000000000f5h |    99 |    99 |         0 |     Ok |
+    |   b1h | Wear Range Delta                             | 0013h | 00000000005eh |    95 |    95 |         0 |     Ok |
+    |   b3h | Used Reserved Block Count (Total)            | 0013h | 000000000000h |   100 |   100 |        10 |     Ok |
+    |   b5h | Program Fail Count Total                     | 0032h | 000000000000h |   100 |   100 |        10 |     Ok |
+    |   b6h | Erase Fail Count                             | 0032h | 000000000000h |   100 |   100 |        10 |     Ok |
+    |   b7h | Sata Down Shift Error Count                  | 0013h | 000000000000h |   100 |   100 |        10 |     Ok |
+    |   bbh | Reported Uncorrectable Errors                | 0032h | 000000000000h |   100 |   100 |         0 |     Ok |
+    |   beh | Temperature Difference From 100              | 0032h | 000000000020h |    68 |    50 |         0 |     Ok |
+    |   c3h | Hardware Ecc Recovered                       | 001ah | 000000000000h |   200 |   200 |         0 |     Ok |
+    |   c7h | Udma Crc Error Rate                          | 003eh | 000000000000h |   100 |   100 |         0 |     Ok |
+    |   ebh | Good Block Count And System Free Block Count | 0012h | 000000000071h |    99 |    99 |         0 |     Ok |
+    |   f1h | Lifetime Writes From Host Gib                | 0032h | 00154bf298c9h |    99 |    99 |         0 |     Ok |
+    +-------------------------------------------------------------------------------------------------------------------+
+ 
 </td></tr>
 </table>
